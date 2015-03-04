@@ -168,8 +168,10 @@ public function actions()
  
                     Thanks for signing up!
                     Your account has been created, you can login with the following is your secret for further communication.'
-                    .$password; // Our message above including the link
+                    .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
                      
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                     $headers = 'From:noreply@vd.com' . "\r\n"; // Set from headers
                     mail($to, $subject, $message, $headers); // Send our email
                         
