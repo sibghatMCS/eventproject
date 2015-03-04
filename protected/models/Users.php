@@ -16,6 +16,8 @@
  */
 class Users extends CActiveRecord
 {
+    
+    public $verifyCode;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,8 +41,11 @@ class Users extends CActiveRecord
 			array('qr_code, key', 'length', 'max'=>400),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
+                    // verifyCode needs to be entered correctly
+			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 			array('id, name, email, dropdown_a, dropdown_b, mobile_no, qr_code, key, status', 'safe', 'on'=>'search'),
-		);
+		
+                    );
 	}
 
 	/**
@@ -69,6 +74,7 @@ class Users extends CActiveRecord
 			'qr_code' => 'Qr Code',
 			'key' => 'Key',
 			'status' => 'Status',
+                        'verifyCode'=>'Verification Code',
 		);
 	}
 /**

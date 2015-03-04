@@ -104,10 +104,10 @@ class QRCodeGenerator extends CWidget {
     {
         QRcode::png($this->data, $this->filePath, $this->errorCorrectionLevel, $this->matrixPointSize, false);
         
-		if ($this->displayImage===true){
-			echo CHtml::image($this->fullUrl,$this->data,$this->imageTagOptions);
-		}else{
-			echo $this->fullUrl;
-		}
+		//if ($this->displayImage===true){
+			//echo CHtml::image($this->fullUrl,$this->data,$this->imageTagOptions);
+		//}else{
+		//	echo $this->fullUrl;
+		//}
     }
 }

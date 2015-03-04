@@ -1,5 +1,5 @@
 <?php
-
+//error_reporting(0);
 class UsersController extends Controller
 {
 	/**
@@ -18,6 +18,20 @@ class UsersController extends Controller
 			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
+
+
+
+
+public function actions()
+{
+    return array(
+        // captcha action renders the CAPTCHA image displayed on the contact page
+        'captcha'=>array(
+            'class'=>'CCaptchaAction',
+            'backColor'=>0xFFFFFF,
+        ),
+    );
+}
 
 	/**
 	 * Specifies the access control rules.
@@ -56,7 +70,12 @@ class UsersController extends Controller
 		));
 	}
 
-                
+                public function actionThankyou()
+{
+    $this->render('thankyou');
+}
+
+
          public function actionPdf()
     {
 
@@ -156,12 +175,8 @@ class UsersController extends Controller
                         
                     
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-                        else
-                        {
-                            echo 'asdasdasd ';
-                            exit;
-                        }
+				$this->redirect(array('thankyou','id'=>$model->id));
+                        
 		}
 
 		$this->render('create',array(
