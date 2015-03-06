@@ -29,13 +29,13 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Admin', 'url'=>array('/admin/admin')),
-				array('label'=>'Users', 'url'=>array('/users/admin')),
-				array('label'=>'Dropdown-A', 'url'=>array('/dropdownA/admin')),
-				array('label'=>'Dropdown-B', 'url'=>array('/dropdownB/admin')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+//				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Admin', 'url'=>array('/admin/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Users', 'url'=>array('/users/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Dropdown-A', 'url'=>array('/dropdownA/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Dropdown-B', 'url'=>array('/dropdownB/admin'),'visible'=>!Yii::app()->user->isGuest),
+//				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+//				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

@@ -8,12 +8,13 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-<<<<<<< HEAD
+    'defaultController' => 'users/create', 
+//<<<<<<< HEAD
 	'theme'=>'rhea',
-=======
-	//'theme'=>'abound',
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
-	
+//=======
+//	//'theme'=>'abound',
+//>>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
+//	
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -37,8 +38,6 @@ return array(
 
 	// application components
 	'components'=>array(
-<<<<<<< HEAD
-=======
             'ePdf' => array(
         'class'         => 'ext.yii-pdf.EYiiPdf',
         'params'        => array(
@@ -79,7 +78,6 @@ return array(
     //...
 
             ///////////////////
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -95,15 +93,7 @@ return array(
 			),
 		),
 		*/
-<<<<<<< HEAD
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-=======
-//		'db'=>array(
-//			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-//		),
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
+
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(

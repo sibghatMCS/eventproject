@@ -17,17 +17,31 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);
-		if(!isset($users[$this->username]))
-			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		elseif($users[$this->username]!==$this->password)
-			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
+            
+              $user = admin::model()->findByAttributes(array('username'=>$this->username));
+
+                if ($user===null) {
+                        $this->errorCode=self::ERROR_USERNAME_INVALID;
+                } else if ($user->password !== $this->password ) { 
+                        $this->errorCode=self::ERROR_PASSWORD_INVALID;
+                } else { // Okay!
+                    $this->errorCode=self::ERROR_NONE;
+                   
+                    
+                }
+                return !$this->errorCode;
+                
+//		$users=array(
+//			// username => password
+//			'demo'=>'demo',
+//			'admin'=>'admin',
+//		);
+//		if(!isset($users[$this->username]))
+//			$this->errorCode=self::ERROR_USERNAME_INVALID;
+//		elseif($users[$this->username]!==$this->password)
+//			$this->errorCode=self::ERROR_PASSWORD_INVALID;
+//		else
+//			$this->errorCode=self::ERROR_NONE;
+//		return !$this->errorCode;
 	}
 }

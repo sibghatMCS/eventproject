@@ -19,58 +19,6 @@ class UsersController extends Controller
 		);
 	}
 
-<<<<<<< HEAD
-        
-        public function actionTestemail(){
-            //define the receiver of the email
-$to = 'info@virtual-developers.com';
-//define the subject of the email
-$subject = 'Test HTML email'; 
-//create a boundary string. It must be unique 
-//so we use the MD5 algorithm to generate a random hash
-
- $headers = "";
-            //$headers .= "From: Novelink <hr@novelink.co.uk >\n\n";//.$_POST["txtFormName"]."<".$_POST["txtFormEmail"].">\nReply-To: ".$_POST["txtFormEmail"]."";
-
-            $headers .= "MIME-Version: 1.0\n";
-            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
-            $headers .= "This is a multi-part message in MIME format.\n";
-
-            $headers .= "--" . $strSid . "\n";
-            //$headers .= "Content-type: text/html; charset=utf-8\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-
-            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
-            $headers .= $strMessage . "\n\n";
-            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
-            //$strFilesName = 'Quotation';
-          //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
-
-//}
-$headers = "From: info@virtual-developers.com \r\n";
-$headers .= "Reply-To: info@virtual-developers.com \r\n";
-
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-
-//define the body of the message.
- echo $random_hash; 
- echo $random_hash; 
- echo $random_hash; 
-//copy current buffer contents into $message variable and delete current output buffer
-$message = '<b>sdsdsd</b><u>ssaasaas</u><br/>sdasdasdasd';
-//send the email
-$mail_sent = mail( $to, $subject, $message, $headers );
-$mail_sent = @mail( $to, $subject, $message, $headers );
-//if the message is sent successfully print "Mail sent". Otherwise print "Mail failed" 
-echo $mail_sent ? "Mail sent" : "Mail failed";
-        }
-=======
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
-
-
-
 public function actions()
 {
     return array(
@@ -219,22 +167,20 @@ public function actions()
                     Your account has been created, you can login with the following is your secret for further communication.'
                     .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
                      
-<<<<<<< HEAD
  $headers = "";
-            //$headers .= "From: Novelink <hr@novelink.co.uk >\n\n";//.$_POST["txtFormName"]."<".$_POST["txtFormEmail"].">\nReply-To: ".$_POST["txtFormEmail"]."";
 
-            $headers .= "MIME-Version: 1.0\n";
-            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
-            $headers .= "This is a multi-part message in MIME format.\n";
-
-            $headers .= "--" . $strSid . "\n";
-            //$headers .= "Content-type: text/html; charset=utf-8\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-
-            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
-            $headers .= $strMessage . "\n\n";
-            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
-            //$strFilesName = 'Quotation';
+//            $headers .= "MIME-Version: 1.0\n";
+//            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
+//            $headers .= "This is a multi-part message in MIME format.\n";
+//
+//            $headers .= "--" . $strSid . "\n";
+//            //$headers .= "Content-type: text/html; charset=utf-8\n";
+//            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+//
+//            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
+//            $headers .= $strMessage . "\n\n";
+//            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
+//            //$strFilesName = 'Quotation';
           //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
 
 //}
@@ -245,12 +191,7 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
 mail($to, $subject, $message, $headers); // Send our email
-=======
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers = 'From:noreply@vd.com' . "\r\n"; // Set from headers
-                    mail($to, $subject, $message, $headers); // Send our email
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
+
                         
                     
 			if($model->save())
