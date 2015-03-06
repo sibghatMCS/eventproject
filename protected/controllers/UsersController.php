@@ -19,6 +19,7 @@ class UsersController extends Controller
 		);
 	}
 
+<<<<<<< HEAD
         
         public function actionTestemail(){
             //define the receiver of the email
@@ -65,6 +66,8 @@ $mail_sent = @mail( $to, $subject, $message, $headers );
 //if the message is sent successfully print "Mail sent". Otherwise print "Mail failed" 
 echo $mail_sent ? "Mail sent" : "Mail failed";
         }
+=======
+>>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
 
 
 
@@ -216,6 +219,7 @@ public function actions()
                     Your account has been created, you can login with the following is your secret for further communication.'
                     .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
                      
+<<<<<<< HEAD
  $headers = "";
             //$headers .= "From: Novelink <hr@novelink.co.uk >\n\n";//.$_POST["txtFormName"]."<".$_POST["txtFormEmail"].">\nReply-To: ".$_POST["txtFormEmail"]."";
 
@@ -241,6 +245,12 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
 mail($to, $subject, $message, $headers); // Send our email
+=======
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers = 'From:noreply@vd.com' . "\r\n"; // Set from headers
+                    mail($to, $subject, $message, $headers); // Send our email
+>>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
                         
                     
 			if($model->save())
