@@ -36,7 +36,7 @@ class Users extends CActiveRecord
 		return array(
 			array('dropdown_a, dropdown_b, status', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>20),
-			array('email', 'length', 'max'=>128),
+			array('email', 'email'),
 			array('mobile_no', 'length', 'max'=>200),
 			array('qr_code, key', 'length', 'max'=>400),
 			// The following rule is used by search().

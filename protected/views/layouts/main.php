@@ -32,11 +32,19 @@
 //				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'Admin', 'url'=>array('/admin/admin'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Users', 'url'=>array('/users/admin'),'visible'=>!Yii::app()->user->isGuest),
+<<<<<<< HEAD
 		//array('label'=>'Dropdown-A', 'url'=>array('/dropdownA/admin'),'visible'=>!Yii::app()->user->isGuest),
 			//	array('label'=>'Dropdown-B', 'url'=>array('/dropdownB/admin'),'visible'=>!Yii::app()->user->isGuest),
 //				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 //				array('label'=>'Contact', 'url'=>array('/site/contact')),
 			//	array('label'=>'Admins Only', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+=======
+				array('label'=>'Dropdown-A', 'url'=>array('/dropdownA/admin'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Dropdown-B', 'url'=>array('/dropdownB/admin'),'visible'=>!Yii::app()->user->isGuest),
+//				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+//				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+>>>>>>> c4c35bb07530d7a975e7e0e0ab5bd53b0c4164c9
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>

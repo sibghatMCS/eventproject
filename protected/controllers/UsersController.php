@@ -185,6 +185,7 @@ $from = "Info@virtual-developers.com";
 $subject = "send email with pdf attachment";
 $message = 'Thanks for signing up!
                     Your account has been created, you can login with the following is your secret for further communication.'
+<<<<<<< HEAD
                     .'<br/><br/> Name:' .$name
                     .'<br/><br/> Email:' .$email
                     .'<br/><br/> College name:' .$dropa 
@@ -221,6 +222,35 @@ $headers .= "--".$separator."--";
 // send message
 mail($to, $subject, "", $headers);
 
+=======
+                    .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
+                     
+ $headers = "";
+
+//            $headers .= "MIME-Version: 1.0\n";
+//            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
+//            $headers .= "This is a multi-part message in MIME format.\n";
+//
+//            $headers .= "--" . $strSid . "\n";
+//            //$headers .= "Content-type: text/html; charset=utf-8\n";
+//            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+//
+//            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
+//            $headers .= $strMessage . "\n\n";
+//            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
+//            //$strFilesName = 'Quotation';
+          //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
+
+//}
+$headers = "From: info@virtual-developers.com \r\n";
+$headers .= "Reply-To: info@virtual-developers.com \r\n";
+
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+mail($to, $subject, $message, $headers); // Send our email
+
+>>>>>>> c4c35bb07530d7a975e7e0e0ab5bd53b0c4164c9
                         
                     
 			if($model->save())
