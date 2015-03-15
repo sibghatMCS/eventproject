@@ -80,11 +80,11 @@
 		<?php //echo $form->error($model,'key'); ?>
 	</div>
 
-	<div class="row">
+<!--	<div class="row">
 		<?php //echo $form->labelEx($model,'status'); ?>
 		<?php echo $form->dropdownlist($model,'status',array(1=>'Active',0=>'De-Active')); ?>
 		<?php //echo $form->error($model,'status'); ?>
-	</div>
+	</div> -->
 
         <?php if(CCaptcha::checkRequirements()): ?>
 	<div class="row">

@@ -19,58 +19,6 @@ class UsersController extends Controller
 		);
 	}
 
-<<<<<<< HEAD
-        
-        public function actionTestemail(){
-            //define the receiver of the email
-$to = 'info@virtual-developers.com';
-//define the subject of the email
-$subject = 'Test HTML email'; 
-//create a boundary string. It must be unique 
-//so we use the MD5 algorithm to generate a random hash
-
- $headers = "";
-            //$headers .= "From: Novelink <hr@novelink.co.uk >\n\n";//.$_POST["txtFormName"]."<".$_POST["txtFormEmail"].">\nReply-To: ".$_POST["txtFormEmail"]."";
-
-            $headers .= "MIME-Version: 1.0\n";
-            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
-            $headers .= "This is a multi-part message in MIME format.\n";
-
-            $headers .= "--" . $strSid . "\n";
-            //$headers .= "Content-type: text/html; charset=utf-8\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-
-            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
-            $headers .= $strMessage . "\n\n";
-            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
-            //$strFilesName = 'Quotation';
-          //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
-
-//}
-$headers = "From: info@virtual-developers.com \r\n";
-$headers .= "Reply-To: info@virtual-developers.com \r\n";
-
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-
-//define the body of the message.
- echo $random_hash; 
- echo $random_hash; 
- echo $random_hash; 
-//copy current buffer contents into $message variable and delete current output buffer
-$message = '<b>sdsdsd</b><u>ssaasaas</u><br/>sdasdasdasd';
-//send the email
-$mail_sent = mail( $to, $subject, $message, $headers );
-$mail_sent = @mail( $to, $subject, $message, $headers );
-//if the message is sent successfully print "Mail sent". Otherwise print "Mail failed" 
-echo $mail_sent ? "Mail sent" : "Mail failed";
-        }
-=======
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
-
-
-
 public function actions()
 {
     return array(
@@ -125,55 +73,24 @@ public function actions()
 }
 
 
-         public function actionPdf()
+         public function actionInformation()
     {
-
-        # mPDF
-        $mPDF1 = Yii::app()->ePdf->mpdf();
- 
-        # You can easily override default constructor's params
-        $mPDF1 = Yii::app()->ePdf->mpdf('', 'A5');
- 
-        # render (full page)
-        $mPDF1->WriteHTML('sdskj jslkd jldj lsk jd');
- 
-//        # Load a stylesheet
-//        $stylesheet = file_get_contents(Yii::getPathOfAlias('webroot.css') . '/main.css');
-//        $mPDF1->WriteHTML($stylesheet, 1);
-// 
-//        # renderPartial (only 'view' of current controller)
-//        $mPDF1->WriteHTML($this->renderPartial('test', array(), true));
-// 
-//        # Renders image
-//        $mPDF1->WriteHTML(CHtml::image(Yii::getPathOfAlias('webroot.css') . '/bg.gif' ));
-// 
-        # Outputs ready PDF
-        $mPDF1->Output();
- 
-        ////////////////////////////////////////////////////////////////////////////////////
-// $html2pdf = Yii::app()->ePdf->HTML2PDF();
-//$html2pdf->writeHTML($this->renderPartial('print', compact('model'),false));
-//$html2pdf->output('etc2.pdf',EYiiPdf::OUTPUT_TO_BROWSER);
-//
-        # HTML2PDF has very similar syntax
-//        $html2pdf = Yii::app()->ePdf->HTML2PDF();
-//        $html2pdf->WriteHTML($this->renderPartial('index', array(), true));
-//        $html2pdf->Output();
-// 
-        ////////////////////////////////////////////////////////////////////////////////////
- 
-        # Example from HTML2PDF wiki: Send PDF by email
-        $content_PDF = $html2pdf->Output('', EYiiPdf::OUTPUT_TO_STRING);
-        require_once(dirname(__FILE__).'/pjmail/pjmail.class.php');
-        $mail = new PJmail();
-        $mail->setAllFrom('webmaster@my_site.net', "My personal site");
-        $mail->addrecipient('mail_user@my_site.net');
-        $mail->addsubject("Example sending PDF");
-        $mail->text = "This is an example of sending a PDF file";
-        $mail->addbinattachement("my_document.pdf", $content_PDF);
-        $res = $mail->sendmail();
+             
+             if(isset($_POST['users']))
+             {
+                 
+                          $key=$_POST['key'];
+                 
+                 $sql="SELECT * FROM  `users` where key ='".$_POST['key']."' ";
+        $data = Yii::app()->db->createCommand($sql)->queryRow();
         
-    }
+        
+        echo $key;
+        exit(0);
+             }
+             
+             $this->render('information');
+                 }
 
 	
     
@@ -190,7 +107,36 @@ public function actions()
 
 		if(isset($_POST['Users']))
 		{
+                    
+                    
+                    require ("fpdf/fpdf.php");
+                    
+                    
 			$model->attributes=$_POST['Users'];
+                        
+                        $name=$model->name;
+                         $email=$model->email;
+                         $dropdowna=$model->dropdown_a;
+                         $dropdownb=$model->dropdown_b;
+                         
+                         $sql="SELECT name from `dropdown_a` where id='$dropdowna'";
+                $data = Yii::app()->db->createCommand($sql)->queryRow();                                     
+                                   $dropa=$data['name'];
+                         
+                         
+                         $sql="SELECT name from `dropdown_b` where id='$dropdownb'";
+                $data = Yii::app()->db->createCommand($sql)->queryRow();                                     
+                                   $dropb=$data['name'];
+                         
+                         
+                         
+                         
+//                         echo $name;
+//                          echo $email;
+//                           echo $dropa;
+//                            echo $dropb;
+//                            
+//                            exit (0);
                         
                         /************KEY GENERATION****************/
                         $length = 7;
@@ -207,50 +153,74 @@ public function actions()
                          'subfolderVar' => false,
                          'matrixPointSize' => 4,
                             ));
-                        
+                       //echo $this->actionPdf();
                         
                         /*********************EMAIL************/
-                   
-                        $to      = $model->email; // Send email to our user
-                    $subject = 'Signup | Verification'; // Give the email a subject
-                    $message = '
+                    # mPDF
+        //$mpdf = Yii::app()->ePdf->mpdf();
  
-                    Thanks for signing up!
+        # You can easily override default constructor's params
+       // $mpdf = Yii::app()->ePdf->mpdf('', 'A5');
+ 
+      $pdf = new FPDF();
+        
+        
+       
+ 
+       $pdf->AddPage();
+$pdf->SetFont("Arial","B",12);
+$pdf->MultiCell(70,10, "Name: $name");
+$pdf->SetFont("Arial","B",10);
+$pdf->MultiCell(70,10, "Email: $email");
+$pdf->SetFont("Arial","B",10);
+$pdf->MultiCell(70,10, "College name: $dropa");
+$pdf->SetFont("Arial","B",10);
+$pdf->MultiCell(70,10, "Department Name: $dropb");
+$pdf->SetFont("Arial","B",10);
+$pdf->MultiCell(70,10, "Secret Key: $password");
+//$pdf->Image('http://eventreg.virtual-developers.com/uploads/'.$password.'.png',60,30,90,0,'PNG');
+
+        $to =  $email;
+$from = "Info@virtual-developers.com";
+$subject = "send email with pdf attachment";
+$message = 'Thanks for signing up!
                     Your account has been created, you can login with the following is your secret for further communication.'
-                    .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
-                     
-<<<<<<< HEAD
- $headers = "";
-            //$headers .= "From: Novelink <hr@novelink.co.uk >\n\n";//.$_POST["txtFormName"]."<".$_POST["txtFormEmail"].">\nReply-To: ".$_POST["txtFormEmail"]."";
+                    .'<br/><br/> Name:' .$name
+                    .'<br/><br/> Email:' .$email
+                    .'<br/><br/> College name:' .$dropa 
+                    .'<br/><br/> Department Name:' .$dropb
+                    .'<br/><br/> Secret Key:' .$password
+                    .'<br/><br/> QR Image: <img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">';
+// a random hash will be necessary to send mixed content
+$separator = md5(time());
+// carriage return type (we use a PHP end of line constant)
+$eol = PHP_EOL;
+// attachment name
+$filename = "example.pdf";
+// encode data (puts attachment in proper format)
+$pdfdoc = $pdf->Output("", "S");
+$attachment = chunk_split(base64_encode($pdfdoc));
+// main header (multipart mandatory)
+$headers = "From: ".$from.$eol;
+$headers .= "MIME-Version: 1.0".$eol;
+$headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"".$eol.$eol;
+$headers .= "Content-Transfer-Encoding: 7bit".$eol;
+$headers .= "This is a MIME encoded message.".$eol.$eol;
+// message
+$headers .= "--".$separator.$eol;
+$headers .= "Content-Type: text/html; charset=\"iso-8859-1\"".$eol;
+$headers .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
+$headers .= $message.$eol.$eol;
+// attachment
+$headers .= "--".$separator.$eol;
+$headers .= "Content-Type: application/octet-stream; name=\"".$filename."\"".$eol;
+$headers .= "Content-Transfer-Encoding: base64".$eol;
+$headers .= "Content-Disposition: attachment".$eol.$eol;
+$headers .= $attachment.$eol.$eol;
+$headers .= "--".$separator."--";
+// send message
+mail($to, $subject, "", $headers);
 
-            $headers .= "MIME-Version: 1.0\n";
-            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
-            $headers .= "This is a multi-part message in MIME format.\n";
-
-            $headers .= "--" . $strSid . "\n";
-            //$headers .= "Content-type: text/html; charset=utf-8\n";
-            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
-
-            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
-            $headers .= $strMessage . "\n\n";
-            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
-            //$strFilesName = 'Quotation';
-          //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
-
-//}
-$headers = "From: info@virtual-developers.com \r\n";
-$headers .= "Reply-To: info@virtual-developers.com \r\n";
-
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-mail($to, $subject, $message, $headers); // Send our email
-=======
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers = 'From:noreply@vd.com' . "\r\n"; // Set from headers
-                    mail($to, $subject, $message, $headers); // Send our email
->>>>>>> 90d87cea0ca2a17ec7a2682357601cdf7fe9efec
                         
                     
 			if($model->save())

@@ -19,9 +19,6 @@ class UsersController extends Controller
 		);
 	}
 
-
-
-
 public function actions()
 {
     return array(
@@ -143,6 +140,30 @@ public function actions()
 		{
 			$model->attributes=$_POST['Users'];
                         
+                        $name=$model->name;
+                         $email=$model->email;
+                         $dropdowna=$model->dropdown_a;
+                         $dropdownb=$model->dropdown_b;
+                         
+                         $sql="SELECT name from `dropdown_a` where id='$dropdowna'";
+                $data = Yii::app()->db->createCommand($sql)->queryRow();                                     
+                                   $dropa=$data['name'];
+                         
+                         
+                         $sql="SELECT name from `dropdown_b` where id='$dropdownb'";
+                $data = Yii::app()->db->createCommand($sql)->queryRow();                                     
+                                   $dropb=$data['name'];
+                         
+                         
+                         
+                         
+//                         echo $name;
+//                          echo $email;
+//                           echo $dropa;
+//                            echo $dropb;
+//                            
+//                            exit (0);
+                        
                         /************KEY GENERATION****************/
                         $length = 7;
                         $chars = array_merge(range(0,9), range('a','z'), range('A','Z'));
@@ -168,12 +189,38 @@ public function actions()
  
                     Thanks for signing up!
                     Your account has been created, you can login with the following is your secret for further communication.'
-                    .$password.' <br/><img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
+                    .'<br/><br/> Name:' .$name
+                    .'<br/><br/> Email:' .$email
+                    .'<br/><br/> College name:' .$dropa 
+                    .'<br/><br/> Department Name:' .$dropb
+                    .'<br/><br/> Secret Key:' .$password
+                    .'<br/><br/> QR Image: <img border="0" src="http://eventreg.virtual-developers.com/uploads/'.$password.'.png">'; // Our message above including the link
                      
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .="\r\nContent-Type: multipart/mixed". "\r\n";
-                    $headers = 'From:noreply@vd.com' . "\r\n"; // Set from headers
-                    mail($to, $subject, $message, $headers); // Send our email
+                $headers = "";
+
+//            $headers .= "MIME-Version: 1.0\n";
+//            $headers .= "Content-Type: multipart/mixed; boundary=\"" . $strSid . "\"\n\n";
+//            $headers .= "This is a multi-part message in MIME format.\n";
+//
+//            $headers .= "--" . $strSid . "\n";
+//            //$headers .= "Content-type: text/html; charset=utf-8\n";
+//            $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+//
+//            //$headers .= "Content-Transfer-Encoding: 7bit\n\n";
+//            $headers .= $strMessage . "\n\n";
+//            $headers .= "From: Virtual Developers<Info@virtual-developers.com >\n\n";
+//            //$strFilesName = 'Quotation';
+          //  $strContent = chunk_split(base64_encode(file_get_contents($file_location)));
+
+//}
+$headers = "From: info@virtual-developers.com \r\n";
+$headers .= "Reply-To: info@virtual-developers.com \r\n";
+
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+mail($to, $subject, $message, $headers); // Send our email
+
                         
                     
 			if($model->save())
